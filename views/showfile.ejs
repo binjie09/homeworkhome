@@ -7,7 +7,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>作业自助管理平台</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         .row h4{
             text-align: center;
@@ -45,28 +45,37 @@
                         <li><a href="#">个人中心</a></li>
                         <li><a href="#">私信</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">注销登录</a></li>
+                        <li><a href="/">注销登录</a></li>
                     </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-    <div class="container">
-        <div class="row">
-            <% for(var i = 0;i < albums.length; i++) { %>
-            <div class="col-xs-6 col-md-3">
-                <a href="./<%=albums[i] %>" class="thumbnail">
-                    <img src="./images/wjj.jpg" alt="...">
-                </a>
-                <h4><%=albums[i] %></h4>
-            </div>
-            <% } %>
+
+<div class="container">
+
+    <ol class="breadcrumb">
+        <li><a href="/">全部文件夹</a></li>
+        <li class="active"><%=filename%></li>
+    </ol>
+
+    <div class="row">
+        <% for(var i = 0;i < files.length; i++) { %>
+        <div class="col-xs-6 col-md-3">
+            <a href="/<%=filename%>/<%=files[i] %>" class="thumbnail">
+                <img src="/images/wjj.jpg" alt="...">
+            </a>
+            <h4><%=files[i] %></h4>
         </div>
+        <% } %>
     </div>
+</div>
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

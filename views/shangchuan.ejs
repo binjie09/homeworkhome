@@ -7,7 +7,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>作业自助管理平台</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         .row h4{
             text-align: center;
@@ -52,21 +52,31 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-    <div class="container">
-        <div class="row">
-            <% for(var i = 0;i < albums.length; i++) { %>
-            <div class="col-xs-6 col-md-3">
-                <a href="./<%=albums[i] %>" class="thumbnail">
-                    <img src="./images/wjj.jpg" alt="...">
-                </a>
-                <h4><%=albums[i] %></h4>
-            </div>
-            <% } %>
-        </div>
+<div class="container-fluid">
+<div class="col-xs-2"></div>
+<div class="form-group col-xs-8">
+<form action="#" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title">姓名</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
     </div>
+    <div class="form-group">
+        <label for="artist">学号</label>
+        <input type="text" class="form-control" id="number" name="number" placeholder="请输入学号">
+    </div>
+    <div class="form-group">
+        <label for="music_file">作业文件</label>
+        <input type="file" id="zuoye" name="zuoye" class="btn btn-inf">
+        <p class="help-block">请选择要上传的文件.</p>
+    </div>
+
+    <button type="submit" class="btn btn-success">点击提交作业</button>
+</form>
+</div>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
