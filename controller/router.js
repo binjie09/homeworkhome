@@ -23,8 +23,13 @@ exports.showIndex = function (req,res) {
         });
     });
 }
-exports.login = function (req, res) {
-    res.render("login");
+exports.login = function (req, res, next) {
+    var username = "你没有登陆";
+    username = req.session.username;
+    res.render("login",{
+        "username" : username,
+        "islogin" : req.session.login
+    });
 }
 exports.showAlbum = function (req, res,next) {
     if(!req.session.login){
@@ -51,13 +56,14 @@ exports.shangchuan = function (req,res,next) { //显示上传页面
         return;
     }
     res.render("shangchuan",{
-        "username":req.session.username
+        "username":req.session.username,
+        "islogin" : req.session.login
     });
 }
 exports.register = function (req, res) {
     res.render("register");
 }
-exports.doshangchuan = function (req, res) {
+exports.doshangchuan = function (req, res, next) {
     if(!req.session.login){
         next();
         return;
@@ -157,6 +163,12 @@ exports.checklogin = function (req, res, next) {
 }
 exports.xiugaimima = function (req, res, next) {
     if(!req.session.login){
+        next();
+        return;
+    }
+}
+exports.admin = function (req, res, next) {
+    if(!req.session.isadmin){
         next();
         return;
     }
