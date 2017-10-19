@@ -1,4 +1,4 @@
-测试站点   [homework]: http://218.195.250.2/        "homework"
+[1]: http://218.195.250.2/        "测试站点"
 ## 快速安装
 1、需要安装mongodb数据库，打开数据库后数据库配置在setting.js中，在配置好数据库后可以使用node student.js来测试nodejs的连接，同时导入两个班级的测试数据。
 
