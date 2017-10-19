@@ -1,10 +1,8 @@
 var file = require("../modles/file.js");
 var formidable = require("formidable");
-var path = require("path");
-var fs = require("fs");
 var db = require("../modles/db.js");
 exports.showIndex = function (req,res) {
-
+    //res.render("test");
     file.getAllFolder(function (allFolder) {
         var username = "你没有登陆";
         if(req.session.login){
@@ -68,34 +66,16 @@ exports.doshangchuan = function (req, res, next) {
         next();
         return;
     }
-    var form = new formidable.IncomingForm();
-
-    form.uploadDir = path.normalize(__dirname + "/../" );
-    form.parse(req, function (err, fields, files) {
-        console.log(fields);
-        console.log(files);
-        var xuehao =req.session.xuehao;
+   
+    file.saveFileToDir(req,"1",function (err) {
         if(err){
             return;
         }
-        var keti;
-        var fenzu;
+        res.set('refresh', '3;url=http://218.195.250.2/');
+        res.send("提交作业成功，3秒后返回首页");
+    })
+  
 
-        db.find("students",{"sno" : xuehao}, function (err, result) {
-            keti = result[0].ruanjianketi;
-            fenzu = result[0].ruanjianfenzu;
-            var oldpath = files.zuoye.path;
-            var extname = path.extname(files.zuoye.name);
-            var newpath =   form.uploadDir + "/uploads/"+keti+"/" + "软件工程 5,7班 第 "+fenzu  +"组 可行性研究报告V1.0" +extname;
-            if(!fs.existsSync(form.uploadDir + "/uploads/"+keti )){
-                fs.mkdirSync(form.uploadDir + "/uploads/" +keti);
-            }
-            fs.renameSync(oldpath,newpath,function (err) {
-                if(err){
-                    res.send(err);
-                }
-            });
-        });
         // var xuehao =req.session.xuehao;
         // var extname = path.extname(files.zuoye.name);
         // var name =req.session.username;
@@ -110,11 +90,8 @@ exports.doshangchuan = function (req, res, next) {
         //         res.send(err);
         //     }
         // });
-        res.set('refresh', '3;url=http://218.195.250.2/');
-        res.send("提交作业成功，3秒后返回首页");
 
-        return;
-    });
+
 
 }
 exports.doregist = function (req, res, next) {
@@ -195,7 +172,8 @@ exports.setHomework = function (req, res, next) {
             "end_time" : fields.end_time,
             "zuoyebiaoti" : fields.zuoyebiaoti,
             "zuoyeyaoqiu" : fields.zuoyeyaoqiu,
-            "classType" : fields.usertype
+            "classType" : fields.usertype,
+            "class" : fields.classlist
         },function (mongoError,result) {
             if(mongoError){
                 res.send("-1");
@@ -205,4 +183,14 @@ exports.setHomework = function (req, res, next) {
         });
     });
 
+}
+exports.showHomework = function (req, res, next) {
+    if(!req.session.login){
+        next();
+        return;
+    }
+    res.render("homeworkList",{
+        "username" :"欢迎你 " + req.session.username,
+        "islogin" : req.session.login
+    });
 }
