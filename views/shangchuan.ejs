@@ -55,24 +55,27 @@
 <div class="container-fluid">
 <div class="col-xs-2"></div>
 <div class="form-group col-xs-8">
-<form action="#" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="title">姓名</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
-    </div>
-    <div class="form-group">
-        <label for="artist">学号</label>
-        <input type="text" class="form-control" id="number" name="number" placeholder="请输入学号">
-    </div>
+<form action="/doshangchuan" method="post" enctype="multipart/form-data">
+
     <div class="form-group">
         <label for="music_file">作业文件</label>
         <input type="file" id="zuoye" name="zuoye" class="btn btn-inf">
-        <p class="help-block">请选择要上传的文件.</p>
+        <p class="help-block">5-7班的<%= username %>你好，您需要提交软件工程作业.</p>
     </div>
 
-    <button type="submit" class="btn btn-success">点击提交作业</button>
+    <button id="tijiao" type="submit" class="btn btn-success">点击提交作业</button>
 </form>
 </div>
+</div>
+<div id="footer" class="container">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-inner navbar-content-center">
+            <p class="text-muted credit" style="padding: 10px; text-align: center">
+                Copyright &copy; 2017. All Rights Reserved <a href="http://acm.xju.edu.cn/" target="_blank">新疆大学</a> admin <a href="mailto:binjie09@outlook.com">陈彬杰</a>
+
+            </p>
+        </div>
+    </nav>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>

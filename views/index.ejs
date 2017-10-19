@@ -47,29 +47,35 @@
                             <input type="xuehao" class="form-control" id="xuehao" placeholder="学号">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail2">Email</label>
-                            <input type="passaword" class="form-control" id="passaword" placeholder="密码">
+                            <label for="exampleInputEmail2">密码</label>
+                            <input type="password" class="form-control" id="mima" placeholder="密码">
                         </div>
-                        <button type="button" class="btn btn-default">登陆</button>
+                        <button id="denglu" type="button" class="btn btn-default">登陆</button>
                     </form>
                 </li>
                 <% } %>
-                <li><a href="/register">注册</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= username %> <span class="caret"></span></a>
+                    <% if (islogin){ %>
                     <ul class="dropdown-menu">
                         <li><a href="#">查看作业</a></li>
                         <li><a href="#">个人中心</a></li>
                         <li><a href="#">私信</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">注销登录</a></li>
+                        <li><a href="/logout">注销登录</a></li>
                     </ul>
+                    <% } %>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
     <div class="container">
+        <div class="row">
+            <div class="alert alert-info" role="alert">
+                <p>作业1：软件工程 可行性研究报告V1.0 截止时间：2017/10/22 周日 19:00</p>
+            </div>
+        </div>
         <div class="row">
             <% for(var i = 0;i < albums.length; i++) { %>
             <div class="col-xs-6 col-md-3">
@@ -80,10 +86,37 @@
             </div>
             <% } %>
         </div>
+
     </div>
+<div id="footer" class="container">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-inner navbar-content-center">
+            <p class="text-muted credit" style="padding: 10px; text-align: center">
+                Copyright &copy; 2017. All Rights Reserved <a href="http://acm.xju.edu.cn/" target="_blank">新疆大学软件学院</a> admin <a href="mailto:binjie09@outlook.com">陈彬杰</a>
+
+            </p>
+        </div>
+    </nav>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $("#denglu").click(function () {
+        $.post("/checklogin",{
+            "xuehao" : $("#xuehao").val(),
+            "mima" : $("#mima").val()
+
+        },function (res) {
+            if(res == "1"){
+
+                window.location.href = "http://218.195.250.2";
+            }else {
+                alert("登陆失败");
+            }
+        });
+    });
+</script>
 </body>
 </html>

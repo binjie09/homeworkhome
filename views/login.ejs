@@ -63,9 +63,19 @@
         <input type="password" class="form-control" id="mima" placeholder="密码">
     </div>
 
-    <button id="登陆" type="button" class="btn btn-default">登陆</button>
+    <button id="denglu" type="button" class="btn btn-default">登陆</button>
     </div>
 </form>
+<div id="footer" class="container">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-inner navbar-content-center">
+            <p class="text-muted credit" style="padding: 10px; text-align: center">
+                Copyright &copy; 2017. All Rights Reserved <a href="http://acm.xju.edu.cn/" target="_blank">新疆大学软件学院</a> admin <a href="mailto:binjie09@outlook.com">陈彬杰</a>
+
+            </p>
+        </div>
+    </nav>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -78,12 +88,13 @@
 
         },function (res) {
             if(res == "1"){
-                alert("注册成功");
+
+                window.location.href = "http://218.195.250.2";
             }else{
-                alert("注册失败");
+                alert("登陆失败");
             }
-        })
-    })
+        });
+    });
 </script>
 </body>
 </html>
