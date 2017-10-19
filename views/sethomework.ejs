@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>作业自助管理平台</title>
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+        .row h4{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<% include header.ejs %>
+<div class="container">
+    <form action="/setHomework" method="post" class="form-horizontal"  role="form">
+        <fieldset>
+            <legend>布置作业</legend>
+
+            <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">作业截止时间</label>
+                <div class="input-group date form_datetime col-md-5" data-date="2017-10-16T05:25:07Z" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
+                    <input id="end_time" name="end_time" class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-2 control-label">作业标题</label>
+                <div class="input-group   col-md-5"   >
+                    <input name="zuoyebiaoti" id="zuoyebiaoti" class="form-control" size="16" type="text" value="" >
+                </div>
+                <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+            <div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">作业要求</label>
+                <div class="input-group   col-md-5"   >
+                    <textarea id="zuoyeyaoqiu" name="zuoyeyaoqiu"  class="form-control" rows="7"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">科目：</label>
+                <div class="col-sm-4">
+                    <select id="classType" name="usertype" class="selectpicker show-tick form-control" multiple data-live-search="false">
+                        <option value="0">Linux</option>
+                        <option value="1">软件工程</option>
+                        <option value="2">JAVA</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">布置作业</button>
+        </fieldset>
+
+    </form>
+</div>
+
+<% include footer.ejs %>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+</script>
+</body>
+</html>

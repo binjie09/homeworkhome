@@ -152,6 +152,7 @@ exports.checklogin = function (req, res, next) {
                 req.session.login = "1";
                 req.session.xuehao = username;
                 req.session.username = result[0].name;
+                req.session.isAdmin = result[0].isadmin;
                 res.send("1");
                 return;
             }else{
@@ -168,8 +169,40 @@ exports.xiugaimima = function (req, res, next) {
     }
 }
 exports.admin = function (req, res, next) {
-    if(!req.session.isadmin){
+    console.log(req.session.isAdmin);
+    if(!req.session.isAdmin){
         next();
         return;
     }
+    res.render("setHomework",{
+        "username" : req.session.name,
+        "islogin" : req.session.login
+    });
+}
+exports.setHomework = function (req, res, next) {
+    if(!req.session.isAdmin){
+        next();
+        return;
+    }
+    var form = new formidable.IncomingForm();
+    form.parse(req,function (err, fields) {
+        if(err){
+            res.send("作业布置失败");
+            return;
+        }
+        console.log(fields);
+        db.insertOne("homeworks",{
+            "end_time" : fields.end_time,
+            "zuoyebiaoti" : fields.zuoyebiaoti,
+            "zuoyeyaoqiu" : fields.zuoyeyaoqiu,
+            "classType" : fields.usertype
+        },function (mongoError,result) {
+            if(mongoError){
+                res.send("-1");
+                return;
+            }
+            res.send("1");
+        });
+    });
+
 }

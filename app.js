@@ -20,13 +20,19 @@ app.get("/logout", function(req,res) {
     return res.render('login');
 });
 app.get("/register",router.register);
-app.post("/doregist",router.doregist)
 app.get("/shangchuan",router.shangchuan);
-app.get("/:albumName",router.showAlbum);
+app.get("/admin",router.admin);
 app.post("/doshangchuan",router.doshangchuan);
+app.post("/doregist",router.doregist);
 app.post("/checklogin",router.checklogin);
+app.post("/setHomework",router.setHomework);
+app.get("/:albumName",router.showAlbum);
 app.use(function (req,res) {
-    res.render("err");
+    username = "null";
+    res.render("err",{
+        "username" : username,
+        "islogin" : req.session.login
+    });
 });
 
 

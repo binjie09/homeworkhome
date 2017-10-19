@@ -1,4 +1,3 @@
-
 //这个模块里面封装了所有对数据库的常用操作
 var MongoClient = require('mongodb').MongoClient;
 var settings = require("../settings.js");
