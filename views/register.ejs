@@ -36,27 +36,10 @@
 
             </ul>
 
-
-
             <ul class="nav navbar-nav navbar-right">
-                <% if (!islogin){ %>
-                <li>
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="exampleInputName2">学号</label>
-                            <input type="xuehao" class="form-control" id="xuehao" placeholder="学号">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail2">Email</label>
-                            <input type="passaword" class="form-control" id="passaword" placeholder="密码">
-                        </div>
-                        <button type="button" class="btn btn-default">登陆</button>
-                    </form>
-                </li>
-                <% } %>
-                <li><a href="/register">注册</a></li>
+                <li><a href="#">注册/登录</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= username %> <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">你的用户名 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">查看作业</a></li>
                         <li><a href="#">个人中心</a></li>
@@ -69,21 +52,38 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<form>
     <div class="container">
-        <div class="row">
-            <% for(var i = 0;i < albums.length; i++) { %>
-            <div class="col-xs-6 col-md-3">
-                <a href="./<%=albums[i] %>" class="thumbnail">
-                    <img src="./images/wjj.jpg" alt="...">
-                </a>
-                <h4><%=albums[i] %></h4>
-            </div>
-            <% } %>
+        <div class="form-group">
+            <label for="xuehao-ex">学号</label>
+            <input type="text" class="form-control" id="xuehao" placeholder="学号">
         </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">密码</label>
+            <input type="password" class="form-control" id="mima" placeholder="密码">
+        </div>
+
+        <button id="zhuce" type="submit" class="btn btn-default">注册</button>
     </div>
+</form>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Include all compiled plugins (below) , or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $("#zhuce").click(function () {
+        $.post("/doregist",{
+            "xuehao" : $("#xuehao").val(),
+            "mima" : $("#mima").val()
+
+        },function (res) {
+            if(res == "1"){
+                alert("注册成功");
+            }else{
+                alert("注册失败");
+            }
+        })
+    })
+</script>
 </body>
 </html>
