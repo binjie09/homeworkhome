@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>作业自助管理平台</title>
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        .row h4{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<% include header.ejs %>
+<div class="row">
+    <div class="alert alert-info" role="alert">
+        <p>没有这个界面，或者你的权限不足！</p>
+    </div>
+</div>
+<div>
+    <p style="text-align: center;"><img src="/images/404.jpg" alt="...." align="center"></p>
+
+</div>
+<% include footer.ejs %>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $("#denglu").click(function () {
+        $.post("/checklogin",{
+            "xuehao" : $("#xuehao").val(),
+            "mima" : $("#mima").val()
+
+        },function (res) {
+            if(res == "1"){
+
+                window.location.href = "http://218.195.250.2";
+            }else {
+                alert("登陆失败");
+            }
+        });
+    });
+</script>
+</body>
+</html>

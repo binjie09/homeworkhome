@@ -48,10 +48,9 @@ exports.shangchuan = function (req,res,next) { //显示上传页面
         next();
         return;
     }
-    res.render("shangchuan",{
-        "username":req.session.username,
-        "islogin" : req.session.login
-    });
+    utils.getJson(req,function (json) {
+        res.render("shangchuan",json);
+    })
 }
 exports.register = function (req, res) {
     res.render("register");
@@ -61,7 +60,6 @@ exports.doshangchuan = function (req, res, next) {
         next();
         return;
     }
-   
     file.saveFileToDir(req,"1",function (err) {
         if(err){
             return;
@@ -139,6 +137,22 @@ exports.xiugaimima = function (req, res, next) {
         next();
         return;
     }
+    utils.getJson(req,function (json) {
+
+    })
+}
+exports.showUserCenter = function (req, res, next) {
+    if(req.session.xuehao != req.params.xuehao){
+        res.render("你没有权限访问别人的个人中心");
+    }
+    utils.getJson(req,function (json) {
+        res.render("userCenter", json);
+    });
+}
+exports.showErr = function (req, res) {
+    utils.getJson(req,function (json) {
+        res.render("err",json);
+    })
 }
 exports.admin = function (req, res, next) {
     console.log(req.session.isAdmin);
@@ -146,9 +160,8 @@ exports.admin = function (req, res, next) {
         next();
         return;
     }
-    res.render("setHomework",{
-        "username" : req.session.name,
-        "islogin" : req.session.login
+    utils.getJson(req,function (json) {
+        res.render("setHomework",json);
     });
 }
 exports.setHomework = function (req, res, next) {
