@@ -27,11 +27,11 @@
 <body>
 <% include header.ejs %>
 
-
+<% if(islogin) { %>
 <div class="container-fluid">
     <div class="row">
         <div class="alert alert-info" role="alert">
-            <p>作业1：软件工程 可行性研究报告V1.0 截止时间：2017/10/22 周日 19:00</p>
+            <p>作业1：软件工程 可行性研究报告V1.0 截止时间：2017/10/21 周六 22:00</p>
         </div>
     </div>
     <div class="content">
@@ -49,6 +49,7 @@
         </div>
     </div>
 </div>
+<% } %>
     <div class="container-fluid">
 
         <div class="row">

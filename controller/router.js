@@ -1,33 +1,28 @@
 var file = require("../modles/file.js");
 var formidable = require("formidable");
 var db = require("../modles/db.js");
+var utils = require("../modles/utils.js");
+getJson = function (req,callback) {
+    var json = {
+        "username" : req.session.username || "请登录",
+        "islogin" : req.session.login,
+        "xuehao" : req.session.xuehao
+    }
+    callback(json);
+}
 exports.showIndex = function (req,res) {
     //res.render("test");
     file.getAllFolder(function (allFolder) {
-        var username = "你没有登陆";
-        if(req.session.login){
-            username = req.session.username;
-            res.render("index",{
-                "albums" : allFolder,
-                "username" :"欢迎你 " + username,
-                "islogin" : req.session.login
-            });
-            return;
-        }
-        res.render("index",{
-            "albums" : allFolder,
-            "username" : username,
-            "islogin" : req.session.login
-        });
+        utils.getJson(req,function (json) {
+            json.albums = allFolder;
+            res.render("index",json);
+        })
     });
 }
 exports.login = function (req, res, next) {
-    var username = "你没有登陆";
-    username = req.session.username;
-    res.render("login",{
-        "username" : username,
-        "islogin" : req.session.login
-    });
+    utils.getJson(req,function (json) {
+        res.render("login",json);
+    })
 }
 exports.showAlbum = function (req, res,next) {
     if(!req.session.login){
@@ -37,14 +32,14 @@ exports.showAlbum = function (req, res,next) {
     var fileName = req.params.albumName;
 
     file.getAllFileByFolderName(fileName,function (err, filesArray) {
-    //console.log(req);
         if(err){
             next();
             return;
         }
-        res.render("showfile", {
-            "files" :filesArray,
-            "filename" : fileName
+        utils.getJson(req,function (json) {
+            json.files = filesArray;
+            json.filename = fileName;
+            res.render("showfile", json);
         });
     });
 }

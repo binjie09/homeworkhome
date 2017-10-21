@@ -59,10 +59,19 @@ exports.saveFileToDir = function (req,zuoyekemu,callback) {
             }
             fs.renameSync(oldpath,newpath,function (err) {
                 if(err){
-
+                    callback("文件重命名错误。");
                 }
             });
-            callback(null,result);
+            db.insertOne("homeworkFiles",{
+                "homeworkID" : 1,
+                "filePath" : newpath,
+                "owner" : req.session.xuehao,
+                "firstTime" : 0,
+                "lastTime" : 0
+            },function (mongoError, p2) {
+                callback(null,result);
+            });
+
         });
     });
 }

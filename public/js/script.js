@@ -19,7 +19,7 @@ $(document).ready(function() {
             events: [{
                 title: '软件工程作业V1.0',
                 start: new Date(2017, 9, 17),
-                end: new Date(2017, 9, 22),
+                end: new Date(2017, 9, 21),
                 url: 'http://218.195.250.2/shangchuan'
             }]
         });

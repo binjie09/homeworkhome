@@ -27,7 +27,7 @@
         <input type="password" class="form-control" id="mima" placeholder="密码">
     </div>
 
-    <button id="denglu" type="button" class="btn btn-default">登陆</button>
+    <button id="denglu2" type="button" class="btn btn-default">登陆</button>
     </div>
 </form>
 <% include footer.ejs %>
@@ -37,6 +37,20 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $("#denglu").click(function () {
+        $.post("/checklogin",{
+            "xuehao" : $("#xuehao").val(),
+            "mima" : $("#mima").val()
+
+        },function (res) {
+            if(res == "1"){
+
+                window.location.href = "http://218.195.250.2";
+            }else{
+                alert("登陆失败");
+            }
+        });
+    });
+    $("#denglu2").click(function () {
         $.post("/checklogin",{
             "xuehao" : $("#xuehao").val(),
             "mima" : $("#mima").val()
