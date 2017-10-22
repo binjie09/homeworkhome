@@ -6,9 +6,23 @@ getJson = function (req,callback) {
     var json = {
         "username" : req.session.username || "请登录",
         "islogin" : req.session.login,
-        "xuehao" : req.session.xuehao
+        "xuehao" : req.session.xuehao,
+        "isadmin" : req.session.isAdmin
     }
     callback(json);
+}
+
+exports.logout = function (req,res,next) {
+     req.session.islogin = false;
+    delete req.session.username;
+
+    file.getAllFolder(function (allFolder) {
+        utils.getJson(req,function (json) {
+            json.albums = allFolder;
+            json.islogin = false;
+            res.render("index",json);
+        })
+    });
 }
 exports.showIndex = function (req,res) {
     //res.render("test");
@@ -132,6 +146,26 @@ exports.checklogin = function (req, res, next) {
         });
     });
 }
+exports.doxiugaimima = function (req, res) {
+    var form = new formidable.IncomingForm();
+    form.parse(req,function (err, fields) {
+        console.log(fields);
+        db.find("students",{"sno":fields.xuehao, "mima" : fields.oldmima},function (err, result) {
+            db.updateMany("students")
+        })
+        db.insertOne("users",{
+            "dengluming" : fields.xuehao,
+            "oldmima" : fields.oldmima,
+            "newmima" : fields.newmima
+        },function (mongoError,res) {
+            if(mongoError){
+                res.send("-1");
+                return;
+            }
+            res.send("1");
+        });
+    });
+}
 exports.xiugaimima = function (req, res, next) {
     if(!req.session.login){
         next();
@@ -197,8 +231,15 @@ exports.showHomework = function (req, res, next) {
         next();
         return;
     }
-    res.render("homeworkList",{
-        "username" :"欢迎你 " + req.session.username,
-        "islogin" : req.session.login
+
+    utils.getJson(req,function (json) {
+        file.getAllHomework("",function (err, result) {
+            if(err){
+                res.render("获取作业出现问题");
+                return;
+            }
+            json.homework = result;
+            res.render("showHomework",json);
+        });
     });
 }

@@ -16,35 +16,42 @@
 </head>
 
 <% include header.ejs %>
-<div class="row">
-    <div class="alert alert-info" role="alert">
-        <p>没有这个界面，或者你的权限不足！</p>
+<form>
+    <div class="container">
+        <div class="form-group">
+            <label for="xuehao-ex">学号</label>
+            <input name="xuehao" type="text" class="form-control" id="xuehao" placeholder="<%=xuehao %>" readonly>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">旧密码</label>
+            <input name="oldmima" type="password" class="form-control" id="oldmima" placeholder="旧密码">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword2">新密码</label>
+            <input name="newmima" type="password" class="form-control" id="newmima" placeholder="新密码">
+        </div>
+        <button name="xiugai" id="xiugai" type="submit" class="btn btn-default">修改密码</button>
     </div>
-</div>
-<div>
-    <p style="text-align: center;"><img src="/images/404.jpg" alt="...." align="center"></p>
-
-</div>
+</form>
 <% include footer.ejs %>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    $("#denglu").click(function () {
-        $.post("/checklogin",{
+    $("#xiugai").click(function () {
+        $.post("/doxiugaimima",{
             "xuehao" : $("#xuehao").val(),
-            "mima" : $("#mima").val()
-
+            "newmima" : $("#newmima").val(),
+            "oldmima" : $("#oldmima").val()
         },function (res) {
             if(res == "1"){
-
-                window.location.href = "http://218.195.250.2";
-            }else {
-                alert("登陆失败");
+                alert("修改成功");
+            }else{
+                alert("修改失败");
             }
-        });
-    });
+        })
+    })
 </script>
 </body>
 </html>

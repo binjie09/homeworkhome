@@ -26,7 +26,14 @@
 </head>
 <body>
 <% include header.ejs %>
-
+<% if(isadmin) { %>
+<div class="row">
+    <div class="alert alert-info" role="alert">
+        <p> 您有一份新的作业请注意打包查收 作业1：软件工程 可行性研究报告V1.0 </p>
+        <button  type="button"><a href="/admin/软件工程1.rar">打包下载</a></button>
+    </div>
+</div>
+<% } %>
 <% if(islogin) { %>
 <div class="container-fluid">
     <div class="row">
@@ -34,6 +41,7 @@
             <p>作业1：软件工程 可行性研究报告V1.0 截止时间：2017/10/21 周六 22:00</p>
         </div>
     </div>
+
     <div class="content">
         <div class="row-fluid">
             <div class="span12">
@@ -56,7 +64,7 @@
             <% for(var i = 0;i < albums.length; i++) { %>
             <div class="col-xs-6 col-md-3">
                 <a href="./<%=albums[i] %>" class="thumbnail">
-                    <img src="./images/wjj.jpg" alt="...">
+                    <img src="./images/wjj.jpg"  alt="...">
                 </a>
                 <h4><%=albums[i] %></h4>
             </div>

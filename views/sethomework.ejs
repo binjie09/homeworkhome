@@ -17,7 +17,13 @@
 </head>
 
 <% include header.ejs %>
-<div class="container">
+<div class="row">
+    <div class="alert alert-info" role="alert">
+        <p> 您有一份新的作业请注意打包查收 作业1：软件工程 可行性研究报告V1.0 </p>
+        <button  type="button"><a href="/admin/软件工程1.rar">打包下载</a></button>
+    </div>
+</div>
+<p class="container">
     <form action="/setHomework" method="post" class="form-horizontal"  role="form">
         <fieldset>
             <legend>布置作业</legend>
@@ -63,6 +69,7 @@
         </fieldset>
 
     </form>
+
 </div>
 
 <% include footer.ejs %>

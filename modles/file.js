@@ -34,6 +34,17 @@ exports.getAllFileByFolderName = function (filename,callback) {
     });
 }
 
+exports.getHomeworkByID = function (homeworkID, callback) {
+    allFile = [];
+   // db.find("homework",{"home"})
+}
+exports.getAllHomework = function (className, callback) {
+    allHomework = [];
+    db.find("homeworks",{},function (err, result) {
+        console.log(result);
+        callback(err,result);
+    });
+}
 exports.saveFileToDir = function (req,zuoyekemu,callback) {
     var form = new formidable.IncomingForm();//获得即将到来的post的表单信息
 
