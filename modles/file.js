@@ -41,7 +41,7 @@ exports.getHomeworkByID = function (homeworkID, callback) {
 exports.getAllHomework = function (className, callback) {
     allHomework = [];
     db.find("homeworks",{},function (err, result) {
-        console.log(result);
+       // console.log(result);
         callback(err,result);
     });
 }

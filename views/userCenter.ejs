@@ -30,7 +30,7 @@
             <label for="exampleInputPassword2">新密码</label>
             <input name="newmima" type="password" class="form-control" id="newmima" placeholder="新密码">
         </div>
-        <button name="xiugai" id="xiugai" type="submit" class="btn btn-default">修改密码</button>
+        <button name="xiugai" id="xiugai" type="button" class="btn btn-default">修改密码</button>
     </div>
 </form>
 <% include footer.ejs %>
@@ -47,8 +47,8 @@
         },function (res) {
             if(res == "1"){
                 alert("修改成功");
-            }else{
-                alert("修改失败");
+            }else if(res == "-2"){
+                alert("密码错误");
             }
         })
     })

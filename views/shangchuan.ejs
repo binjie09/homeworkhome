@@ -23,8 +23,8 @@
 
     <div class="form-group">
         <label for="music_file">作业文件</label>
-       <!-- <input type="file" id="zuoye" name="zuoye" class="btn btn-inf"> -->
-        <p class="help-block">5-7班的<%= username %>你好，作业提交已经全部截止，你没有需要提交的作业.</p>
+        <input type="file" id="zuoye" name="zuoye" class="btn btn-inf">
+        <p class="help-block">5-7班的<%= username %>你好,需要提交   作业.</p>
     </div>
     <div class="form-group">
         <label for="dtp_input3" class="col-md-2 control-label">额外备注：</label>
@@ -32,7 +32,7 @@
             <textarea id="zuoyeyaoqiu" name="zuoyeyaoqiu"  class="form-control" rows="7"></textarea>
         </div>
     </div>
-    <!-- <button id="tijiao" type="submit" class="btn btn-success">点击提交作业</button> -->
+    <button id="tijiao" type="submit" class="btn btn-success">点击提交作业</button>
 </form>
 </div>
 </div>
@@ -51,7 +51,7 @@
             if(res == "1"){
 
                 window.location.href = "http://218.195.250.2";
-            }else {
+            }else if(res == ""){
                 alert("登陆失败");
             }
         });

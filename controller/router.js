@@ -129,7 +129,7 @@ exports.checklogin = function (req, res, next) {
                 return;
             }
             if(result.length == 0){
-                res.send("-1");
+                res.send("-2");
                 return;
             }
             if(password == result[0].mima){
@@ -150,20 +150,25 @@ exports.doxiugaimima = function (req, res) {
     var form = new formidable.IncomingForm();
     form.parse(req,function (err, fields) {
         console.log(fields);
-        db.find("students",{"sno":fields.xuehao, "mima" : fields.oldmima},function (err, result) {
-            db.updateMany("students")
-        })
-        db.insertOne("users",{
-            "dengluming" : fields.xuehao,
-            "oldmima" : fields.oldmima,
-            "newmima" : fields.newmima
-        },function (mongoError,res) {
-            if(mongoError){
-                res.send("-1");
+        db.find("students",{"sno":req.session.xuehao, "mima" : fields.oldmima},function (err, result) {
+            console.log(result);
+            if(result.length == 0){
+                res.end("-2");//负二表示密码错误
                 return;
             }
-            res.send("1");
-        });
+            db.updateMany("students",{
+                "sno" : req.session.xuehao
+            },{
+                $set:{"mima" : fields.newmima}
+            }, function (mongoError,result2) {
+                if(mongoError){
+                    console.log(mongoError);
+                }
+                res.end("1");
+                return;
+            });
+        })
+
     });
 }
 exports.xiugaimima = function (req, res, next) {

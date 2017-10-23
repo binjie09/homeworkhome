@@ -1,10 +1,7 @@
 var express= require("express");
 var session = require("express-session");
-
 var app = express();
-
 var router = require("./controller/router.js");
-
 app.set("view engine", "ejs");
 app.use(session({
     secret: 'keyboard cat',

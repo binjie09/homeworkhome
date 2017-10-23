@@ -62,8 +62,7 @@
 
         <div class="row">
             <% for(var i = 0;i < albums.length; i++) { %>
-            <div class="col-xs-6 col-md-3">
-                <a href="./<%=albums[i] %>" class="thumbnail">
+            <div class="col-xs-6 col-md-3"> <a href="./<%= albums[i] %>" class="thumbnail">
                     <img src="./images/wjj.jpg"  alt="...">
                 </a>
                 <h4><%=albums[i] %></h4>
@@ -76,7 +75,7 @@
 
 <% include footer.ejs %>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -92,8 +91,10 @@
             if(res == "1"){
 
                 window.location.href = "http://218.195.250.2";
-            }else {
-                alert("登陆失败");
+            }else if(res=="-2"){
+                alert("帐号不存在");
+            }else if(res=="-1"){
+                alert("密码错误");
             }
         });
     });
