@@ -30,7 +30,7 @@
 
             <div class="form-group">
                 <label for="dtp_input1" class="col-md-2 control-label">作业截止时间</label>
-                <div class="input-group date form_datetime col-md-5" data-date="2017-10-16T05:25:07Z" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
+                <div class="input-group date form_datetime col-md-5" data-date="2017-10-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
                     <input id="end_time" name="end_time" class="form-control" size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -51,17 +51,31 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="dtp_input5" class="col-md-2 control-label">作业命名格式</label>
+                <div class="input-group   col-md-5"   >
+                    <textarea id="zuoyegeshi" name="zuoyegeshi"  class="form-control" rows="1">{班级1}_{课题}_{分组1}示例格式1.0</textarea>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="dtp_input4" class="col-md-2 control-label">添加附件</label>
                 <input type="file" id="extra_file"  name="extra_file" class="btn btn-inf">
-
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">科目：</label>
                 <div class="col-sm-5">
-                    <select id="classType" name="usertype" class="selectpicker show-tick form-control" multiple data-live-search="false">
+                    <select id="classType" name="usertype" class="selectpicker show-tick form-control"  data-live-search="false">
                         <option value="0">Linux</option>
                         <option value="1">软件工程</option>
                         <option value="2">JAVA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">提交方式：</label>
+                <div class="col-sm-5">
+                    <select id="tijiaofangshi" name="tijiaofangshi" class="selectpicker show-tick form-control"  data-live-search="false">
+                        <option value="0">个人提交</option>
+                        <option value="1">分组提交</option>
                     </select>
                 </div>
             </div>
