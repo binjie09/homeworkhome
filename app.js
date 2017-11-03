@@ -21,6 +21,8 @@ app.get("/shangchuan/:xuehao",router.shangchuan);
 app.get("/admin",router.admin);
 app.get("/usercenter/:xuehao",router.showUserCenter);
 app.post("/doshangchuan",router.doshangchuan);
+app.post("/doshangchuan2",router.doshangchuan2);
+app.post("/doshangchuan3",router.doshangchuan3);
 app.post("/doregist",router.doregist);
 app.post("/checklogin",router.checklogin);
 app.post("/setHomework",router.setHomework);

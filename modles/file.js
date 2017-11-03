@@ -36,12 +36,12 @@ exports.getAllFileByFolderName = function (filename,callback) {
 
 exports.getHomeworkByID = function (homeworkID, callback) {
     allFile = [];
-   // db.find("homework",{"home"})
+    // db.find("homework",{"home"})
 }
 exports.getAllHomework = function (className, callback) {
     allHomework = [];
     db.find("homeworks",{},function (err, result) {
-       // console.log(result);
+        // console.log(result);
         callback(err,result);
     });
 }
@@ -58,15 +58,27 @@ exports.saveFileToDir = function (req,zuoyekemu,callback) {
         }
         var keti;
         var fenzu;
-
+        var xingming;
+        var xuhao;
+        var banji;
         db.find("students",{"sno" : xuehao}, function (err, result) {
             keti = result[0].ruanjianketi;
             fenzu = result[0].ruanjianfenzu;
+            xingming = result[0].name;
+            xuhao = result[0].xuhao;
+            banji = result[0].banji;
             var oldpath = files.zuoye.path;
             var extname = path.extname(files.zuoye.name);
-            var newpath =   form.uploadDir + "/uploads/"+keti+"/" + "软件工程 5,7班 第 "+fenzu  +"组 可行性研究报告V1.0" +extname;
-            if(!fs.existsSync(form.uploadDir + "/uploads/"+keti )){
-                fs.mkdirSync(form.uploadDir + "/uploads/" +keti);
+            var newpath;
+            console.log(zuoyekemu);
+            if(zuoyekemu == "1")
+                newpath =   form.uploadDir + "/uploads/"+"linux1"+"/" + "15-7"+xingming  +xuehao+extname;
+            else if(zuoyekemu == "2")
+                newpath = form.uploadDir + "/uploads/"+keti+"/"+"5,7班_"+fenzu+"组_SRS1.0" + extname;
+            else if(zuoyekemu == "3")
+                newpath = form.uploadDir + "/uploads/"+"/软件工程/软件"+banji+"班-"+xuhao+"-"+xingming+"-习题1"+extname;
+            if(!fs.existsSync(form.uploadDir + "/uploads/"+keti)){
+                fs.mkdirSync(form.uploadDir + "/uploads/"+keti);
             }
             fs.renameSync(oldpath,newpath,function (err) {
                 if(err){

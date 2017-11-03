@@ -19,21 +19,55 @@
 <div class="container-fluid">
 <div class="col-xs-2"></div>
 <div class="form-group col-xs-8">
-<form action="/doshangchuan" method="post" enctype="multipart/form-data">
+<!--<form action="/doshangchuan" method="post" enctype="multipart/form-data">-->
 
-    <div class="form-group">
-        <label for="music_file">作业文件</label>
-        <input type="file" id="zuoye" name="zuoye" class="btn btn-inf">
-        <p class="help-block">5-7班的<%= username %>你好,需要提交   作业.</p>
-    </div>
-    <div class="form-group">
-        <label for="dtp_input3" class="col-md-2 control-label">额外备注：</label>
-        <div class="input-group   col-md-5"   >
-            <textarea id="zuoyeyaoqiu" name="zuoyeyaoqiu"  class="form-control" rows="7"></textarea>
+    <!--<div class="form-group">-->
+        <!--<label for="music_file">作业文件</label>-->
+        <!--<input type="file" id="zuoye" name="zuoye" class="btn btn-inf">-->
+        <!--<p class="help-block">5-7班的<%= username %>你好,需要提交linux作业.</p>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<label for="dtp_input3" class="col-md-2 control-label">额外备注：</label>-->
+        <!--<div class="input-group   col-md-5"   >-->
+            <!--<textarea id="zuoyeyaoqiu" name="zuoyeyaoqiu"  class="form-control" rows="7"></textarea>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<button id="tijiao" type="submit" class="btn btn-success">点击提交作业</button>-->
+<!--</form>-->
+    <form action="/doshangchuan2" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="music_file">作业文件</label>
+            <input type="file" id="zuoye" name="zuoye" class="btn btn-inf">
+            <p class="help-block">5-7班的<%= username %>你好,需要提交软件工程SRSV1.0的作业.</p>
         </div>
-    </div>
-    <button id="tijiao" type="submit" class="btn btn-success">点击提交作业</button>
-</form>
+        <div class="form-group">
+            <label for="dtp_input3" class="col-md-2 control-label">额外备注：</label>
+            <div class="input-group   col-md-5"   >
+                <textarea id="zuoyeyaoqiu" name="zuoyeyaoqiu"  class="form-control" rows="7"></textarea>
+            </div>
+        </div>
+        <button id="tijiao2" type="submit" class="btn btn-success">点击提交作业</button>
+    </form>
+    <hr />
+    <form action="/doshangchuan3" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="music_file">作业文件</label>
+            <input type="file" id="zuoye" name="zuoye" class="btn btn-inf">
+            <p class="help-block">5-7班的<%= username %>你好,需要提交软件工程1-3章作业.</p>
+        </div>
+        <div class="form-group">
+            <label for="dtp_input3" class="col-md-2 control-label">额外备注：</label>
+            <div class="input-group   col-md-5"   >
+                <textarea id="zuoyeyaoqiu" name="zuoyeyaoqiu"  class="form-control" rows="7"></textarea>
+            </div>
+        </div>
+        <button id="tijiao3" type="submit" class="btn btn-success">点击提交作业</button>
+    </form>
+</div>
+
+
 </div>
 </div>
 <% include footer.ejs %>

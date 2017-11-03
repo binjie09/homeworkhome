@@ -20,8 +20,14 @@ $(document).ready(function() {
                 title: '软件工程作业V1.0',
                 start: new Date(2017, 9, 17),
                 end: new Date(2017, 9, 21),
-                url: 'http://218.195.250.2/shangchuan'
-            }]
+                url: '/shangchuan'
+            },
+                {
+                    title: 'linux作业 vi编辑器',
+                    start: new Date(2017, 9, 23),
+                    end: new Date(2017, 9, 25),
+                    url: '/shangchuan'
+                }]
         });
     }
 });

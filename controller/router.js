@@ -78,7 +78,7 @@ exports.doshangchuan = function (req, res, next) {
         if(err){
             return;
         }
-        res.set('refresh', '3;url=http://218.195.250.2/');
+        res.set('refresh', '3;url=/');
         res.send("提交作业成功，3秒后返回首页");
     })
   
@@ -98,8 +98,32 @@ exports.doshangchuan = function (req, res, next) {
         //     }
         // });
 
-
-
+}
+exports.doshangchuan2 = function (req, res, next) {
+    if(!req.session.login){
+        next();
+        return;
+    }
+    file.saveFileToDir(req,"2",function (err) {
+        if(err){
+            return;
+        }
+        res.set('refresh', '3;url=http://ohmydesk.top');
+        res.send("提交软件工程作业成功，3秒后返回首页可查看你的文件夹里的作业");
+    })
+}
+exports.doshangchuan3 = function (req, res, next) {
+    if(!req.session.login){
+        next();
+        return;
+    }
+    file.saveFileToDir(req,"3",function (err) {
+        if(err){
+            return;
+        }
+        res.set('refresh', '3;url=http://ohmydesk.top/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/');
+        res.send("提交软件工程作业成功，3秒后查看作业");
+    })
 }
 exports.doregist = function (req, res, next) {
     var form = new formidable.IncomingForm();
@@ -182,11 +206,21 @@ exports.xiugaimima = function (req, res, next) {
 }
 exports.showUserCenter = function (req, res, next) {
     if(req.session.xuehao != req.params.xuehao){
-        res.render("你没有权限访问别人的个人中心");
+        res.send("你没有权限访问别人的个人中心");
     }
-    utils.getJson(req,function (json) {
-        res.render("userCenter", json);
-    });
+    db.find("students",{"sno":req.session.xuehao},function (err, result) {
+        console.log(result[0]);
+        if(result != undefined)
+        utils.getJson(req,function (json) {
+            json.xiangmu = result[0].ruanjianketi;
+            json.fenzu = result[0].ruanjianfenzu;
+            json.banji = result[0].banji;
+            json.xuhao = result[0].xuhao;
+            console.log(json);
+            res.render("userCenter", json);
+        });
+    })
+
 }
 exports.showErr = function (req, res) {
     utils.getJson(req,function (json) {
@@ -219,8 +253,10 @@ exports.setHomework = function (req, res, next) {
             "end_time" : fields.end_time,
             "zuoyebiaoti" : fields.zuoyebiaoti,
             "zuoyeyaoqiu" : fields.zuoyeyaoqiu,
-            "classType" : fields.usertype,
-            "class" : fields.classlist
+            "zuoyegeshi" : fields.zuoyegeshi,
+            "tijiaobanji" : fields.tijiaobanji,
+            "tijiaofangshi": fields.tijiaofangshi,
+            "zuoyekemu" : fields.zuoyekemu
         },function (mongoError,result) {
             if(mongoError){
                 res.send("-1");
@@ -229,7 +265,6 @@ exports.setHomework = function (req, res, next) {
             res.send("1");
         });
     });
-
 }
 exports.showHomework = function (req, res, next) {
     if(!req.session.login){
